@@ -15,12 +15,13 @@ export default {
     store.dispatch('fetchUser')
     const tickets = computed(() => store.state.tickets)
 
-    // const user = computed(() => {
-    //   return store.getters.user
-    // }
-    //   )
+    const user = computed(() => {
+      return store.getters.user
+    }
+      )
     return {
-      tickets
+      tickets,
+	  user
     }
   }
 }
