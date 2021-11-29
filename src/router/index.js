@@ -20,7 +20,7 @@ const routes = [
 		path: '/login',
 		name: 'Login',
 		component: Login,
-		meta: { requiresAuth: false }
+		meta: { guest: true }
 	},
 	{
 		path: '/public-faq',
@@ -58,6 +58,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 	if (to.meta.requiresAuth && !store.state.user) {
 		next({ name: 'Login'})
+	}
+	if (to.meta.guest && store.state.user) {
+		next({ name: 'Home'})
 	}
 	else next ()
 })
