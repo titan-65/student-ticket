@@ -4,7 +4,7 @@ import { supabase } from '../supabase'
 // Create a new store instance.
 const store = createStore({
     state: {
-      user: null,
+      user: {},
       tickets: [],
   },
   mutations: {
