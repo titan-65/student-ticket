@@ -15,7 +15,7 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-	  <div class="navbar-start">
+	  <div class="navbar-start" v-if="user">
 		  <router-link :to="{ name: 'TicketsPage' }" class="navbar-item">
           Tickets
         </router-link>
@@ -37,7 +37,7 @@
             <router-link :to="{ name: 'Home' }" class="navbar-item">
               {{ user.email }}
             </router-link>
-			<a class="button navbar-item is-light">Signout</a>
+			<a class="button navbar-item is-light" @click="logout">Signout</a>
           </div>
         </div>
       </div>
@@ -47,17 +47,28 @@
 
 <script>
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
+import { supabase } from '../supabase.js'
 export default {
   setup() {
+	  const router = useRouter()
     const isActive = ref(true)
     const store = useStore()
+	store.dispatch('fetchUser')
     const user = computed(() => {
-      return store.getters.user
+      return store.state.user
     })
+	
+	const logout = async () => {
+		let { error } = await supabase.auth.signOut()
+		if (error) throw error
+		router.push('/')
+	}
     return {
       user,
       isActive,
+	  logout
     }
   },
 }
