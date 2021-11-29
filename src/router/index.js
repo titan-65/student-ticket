@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '../state'
+
 import AddNewTickets from '../views/AddNewTickets.vue'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import PublicFaq from '../views/PublicFaq.vue'
 import TicketsDetail from '../views/TicketsDetail.vue'
 import TicketsPage from '../views/AddNewTickets.vue'
+import {supabase} from '../supabase'
 
 const routes = [
 	{
@@ -50,6 +53,13 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(),
 	routes
+})
+
+router.beforeEach((to, from, next) => {
+	if (to.meta.requiresAuth && !store.state.user) {
+		next({ name: 'Login'})
+	}
+	else next ()
 })
 
 export default router
