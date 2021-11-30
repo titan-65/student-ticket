@@ -21,10 +21,9 @@ const getQuestions = () => {
       }
     } catch (e) {
       console.log(error.message)
-	}
-	  loading.value = false
+    }
+    loading.value = false
   }
-  console.log(questions.value)
 
   return {
     loading,
