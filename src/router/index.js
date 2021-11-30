@@ -56,6 +56,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+	document.title = `${to.name} | StuCheck`
 	if (to.meta.requiresAuth && !store.state.user) {
 		next({ name: 'Login'})
 	}
