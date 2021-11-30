@@ -50,7 +50,7 @@
             </form>
           </div>
           <p class="has-text-grey">
-            <a href="#">Sign Up</a> &nbsp;·&nbsp;
+            <router-link :to="{ name: 'SignUp' }">Sign Up</router-link> &nbsp;·&nbsp;
             <a href="#">Forgot Password</a> &nbsp;·&nbsp;
             <a href="#">Need Help?</a>
           </p>
@@ -89,7 +89,7 @@ export default {
         })
         if (error) throw error
         alert('Check your email for the login link!')
-        router.push('/tickets')
+        router.push('/')
       } catch (error) {
         alert(error.error_description || error.message)
       } finally {
