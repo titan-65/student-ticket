@@ -1,5 +1,5 @@
 <template>
-<section class="hero is-fullheight">
+<section class="hero is-fullheight bg-hero">
       <div class="hero-body">
         <div class="container has-text-centered">
           <div class="column is-4 is-offset-4">
@@ -18,14 +18,14 @@
                     </span>
                   </p>
                 </div>
-                <!-- <div class="field">
+                <div class="field">
                   <p class="control has-icons-left">
-                    <input class="input is-medium" type="password" placeholder="Password" />
+                    <input class="input is-medium" type="password" placeholder="Password" v-model="password"/>
                     <span class="icon is-small is-left">
                       <i class="fas fa-lock"></i>
                     </span>
                   </p>
-                </div> -->
+                </div>
                 <!-- <div class="field">
                   <label class="checkbox">
                     <input type="checkbox" />
@@ -64,20 +64,29 @@ export default {
       const router = useRouter()
     const loading = ref(false)
     const email = ref("")
+	const password = ref("")
 
     const handleLogin = async () => {
       try {
         loading.value = true
-        const { error } = await supabase.auth.signIn({ email: email.value })
+        const { error } = await supabase.auth.signIn({ 
+			email: email.value,
+			password: password.value
+			})
         if (error) throw error
         alert("Check your email for the login link!")
-        router.push("/")
+        router.push("/tickets")
       } catch (error) {
         alert(error.error_description || error.message)
       } finally {
         loading.value = false
       }
     }
+	
+	// let { user, error } = await supabase.auth.signUp({
+	//   email: 'someone@email.com',
+	//   password: 'eLRNGgraNhKSpMQpTDfd'
+	// })
 
     return {
       loading,
@@ -89,4 +98,9 @@ export default {
 </script>
 
 <style>
+	.bg-hero {
+	  background-image: url(https://images.unsplash.com/photo-1494883759339-0b042055a4ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80);
+	  background-size: cover;
+	  background-position: center;
+	}
 </style>
