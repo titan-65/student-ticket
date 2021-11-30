@@ -7,7 +7,7 @@ import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import PublicFaq from '../views/PublicFaq.vue'
 import TicketsDetail from '../views/TicketsDetail.vue'
-import TicketsPage from '../views/AddNewTickets.vue'
+import TicketsPage from '../views/TicketsPage.vue'
 import { supabase } from '../supabase'
 
 const routes = [
@@ -35,22 +35,22 @@ const routes = [
     meta: { requiresAuth: false },
   },
   {
-    path: '/add-new-ticket',
-    name: 'AddNewTicket',
-    component: AddNewTickets,
-    meta: { requiresAuth: true },
-  },
-  {
     path: '/tickets',
     name: 'TicketsPage',
     component: TicketsPage,
     meta: { requiresAuth: true },
-  },
-  {
-    path: '/ticket-details',
-    name: 'TicketsPDetail',
-    component: TicketsDetail,
-    meta: { requiresAuth: true },
+    children: [
+      {
+        path: '/add-new-ticket',
+        name: 'AddNewTicket',
+        component: AddNewTickets,
+      },
+      {
+        path: '/ticket-details',
+        name: 'TicketsPDetail',
+        component: TicketsDetail,
+      },
+    ],
   },
 ]
 
