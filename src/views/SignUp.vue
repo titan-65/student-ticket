@@ -85,11 +85,11 @@ export default {
         loading.value = true
         const { user, error } = await supabase.auth.signUp({
           email: email.value,
-          password: pasword.value,
+          password: password.value,
         })
         if (error) throw error
         store.dispatch('addUser', user)
-        router.push('/tickets')
+        router.push('/')
       } catch (error) {
         alert(error.error_description || error.message)
       } finally {
@@ -100,6 +100,7 @@ export default {
       loading,
       email,
       handleSignUp,
+      password,
     }
   },
 }
