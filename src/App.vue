@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-	<AppLayout class="pt-6">
+	<AppLayout>
 		<router-view/>
 	</AppLayout>
 </template>
@@ -40,8 +40,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #6d6d6d;
- 
-  
+
+
 }
 
 </style>
