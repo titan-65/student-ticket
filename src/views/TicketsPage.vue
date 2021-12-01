@@ -2,7 +2,25 @@
   <section class="hero is-medium">
     <div class="container">
       <div class="hero-body">
-        <h1 class="title">Tickets</h1>
+        <h1 class="title">Support Tickets</h1>
+      </div>
+      <div class="columns">
+        <div class="container column">
+          <router-link
+            class="button"
+            :to="{ name: 'Tickets' }"
+            v-if="route.name !== 'Tickets'"
+            >Tickets</router-link
+          >
+        </div>
+        <div class="container column">
+          <router-link
+            class="button"
+            :to="{ name: 'AddNewTicket' }"
+            v-if="route.name !== 'AddNewTicket'"
+            >New</router-link
+          >
+        </div>
       </div>
     </div>
   </section>
@@ -12,15 +30,8 @@
       <div class="tickets">
         <Loading v-if="loading === true" />
         <div class="current-tickets" v-else>
-          <div class="columns">
-            <div class="box" v-for="ticket in tickets" :key="ticket.id">
-              <h2>{{ ticket.name }}</h2>
-              <span class="tag is-danger">{{ ticket.category }}</span>
-              <div class="content">
-                <p>{{ ticket.created_at }}</p>
-              </div>
-            </div>
-          </div>
+          <!--           <Tickets :tickets="tickets" /> -->
+          <router-view />
         </div>
       </div>
     </div>
@@ -30,18 +41,22 @@
 <script>
 //TODO: install date parser or use javascript data
 import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import getTickets from '../composables/getTickets'
+
+// import Tickets from '../components/Tickets.vue'
 export default {
+
   setup() {
-    const { loading, tickets, fetchTickets } = getTickets()
+    const route = useRoute()
+    const { loading, fetchTickets } = getTickets()
 
     onMounted(() => {
       fetchTickets()
     })
-    console.log(tickets)
     return {
-      tickets,
       loading,
+      route,
     }
   },
 }
