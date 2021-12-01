@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="columns">
         <div class="column is-full">
-          <h1 class="title">Welcome to Student Support Center</h1>
+          <h1 class="hero-title">Welcome to Student Support Center</h1>
         </div>
       </div>
     </div>
@@ -36,10 +36,16 @@
 
 <script></script>
 
-<style>
+<style scoped>
 .bg-hero {
   background-image: url(https://images.unsplash.com/photo-1520881363902-a0ff4e722963?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
   background-size: cover;
   background-position: center;
+}
+.hero-title {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.125;
 }
 </style>
