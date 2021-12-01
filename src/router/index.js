@@ -8,6 +8,7 @@ import SignUp from '../views/SignUp.vue'
 import PublicFaq from '../views/PublicFaq.vue'
 import TicketsDetail from '../views/TicketsDetail.vue'
 import TicketsPage from '../views/TicketsPage.vue'
+import Tickets from '../components/Tickets.vue'
 import { supabase } from '../supabase'
 
 const routes = [
@@ -40,6 +41,11 @@ const routes = [
     component: TicketsPage,
     meta: { requiresAuth: true },
     children: [
+      {
+        path: '',
+        name: 'Tickets',
+        component: Tickets,
+      },
       {
         path: '/add-new-ticket',
         name: 'AddNewTicket',
