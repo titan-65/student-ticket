@@ -1,6 +1,6 @@
 <template>
-  <div class="header-home bd-navbar pr-4">
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="header-home container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link class="navbar-item" :to="{ name: 'Home' }">
           <!-- <img
@@ -47,7 +47,7 @@
 //TODO: add a watcher that watches changes when user login changes
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { supabase } from '../supabase.js'
 export default {
   setup() {
@@ -78,7 +78,7 @@ export default {
   border-bottom-color: #003543;
 }
 .header-home {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 @media screen and (min-width: 1024px) {
