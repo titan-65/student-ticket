@@ -1,5 +1,5 @@
 <template>
-  <SmartForm> : </SmartForm>
+  <SmartForm></SmartForm>
 </template>
 
 <script>
