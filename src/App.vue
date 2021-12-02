@@ -1,14 +1,13 @@
 <script>
-
-import AppLayout from './layout/AppLayout.vue';
-import { useStore } from 'vuex';
+import AppLayout from './layout/AppLayout.vue'
+import { useStore } from 'vuex'
 import { computed } from 'vue'
 
-import {supabase } from './supabase'
+import { supabase } from './supabase'
 
 export default {
   components: {
-    AppLayout
+    AppLayout,
   },
   setup() {
     const store = useStore()
@@ -17,20 +16,19 @@ export default {
 
     const user = computed(() => {
       return store.getters.user
-    }
-      )
+    })
     return {
       tickets,
-	  user
+      user,
     }
-  }
+  },
 }
 </script>
 
 <template>
-	<AppLayout>
-		<router-view/>
-	</AppLayout>
+  <AppLayout>
+    <router-view />
+  </AppLayout>
 </template>
 
 <style>
@@ -40,8 +38,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #6d6d6d;
-
-
 }
-
 </style>
