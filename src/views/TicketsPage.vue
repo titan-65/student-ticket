@@ -46,7 +46,6 @@ import getTickets from '../composables/getTickets'
 
 // import Tickets from '../components/Tickets.vue'
 export default {
-
   setup() {
     const route = useRoute()
     const { loading, fetchTickets } = getTickets()
