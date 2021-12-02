@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import getTickets from '../composables/getTickets'
 
 export default {
@@ -22,6 +22,9 @@ export default {
 
     onMounted(() => {
       fetchTickets()
+    })
+    watchEffect(() => {
+      tickets
     })
     return {
       loading,

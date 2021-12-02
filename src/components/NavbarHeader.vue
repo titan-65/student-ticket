@@ -15,16 +15,16 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-start" v-if="user">
-        <router-link :to="{ name: 'TicketsPage' }" class="navbar-item">
+      <div class="navbar-start">
+        <router-link :to="{ name: 'TicketsPage' }" class="navbar-item" v-if="user">
           Tickets
         </router-link>
-      </div>
-      <div class="navbar-end">
         <router-link :to="{ name: 'Home' }" active-class="active" class="navbar-item"
           >Student</router-link
         >
         <router-link :to="{ name: 'PublicFaq' }" class="navbar-item"> FAQ </router-link>
+      </div>
+      <div class="navbar-end">
         <router-link :to="{ name: 'Login' }" class="navbar-item" v-if="!user">
           Login
         </router-link>
@@ -35,7 +35,12 @@
             <router-link :to="{ name: 'Home' }" class="navbar-item">
               {{ user.email }}
             </router-link>
-            <a class="button navbar-item is-light" @click="logout">Signout</a>
+            <router-link :to="{ name: 'Profile' }" class="navbar-item">
+              Dashboard
+            </router-link>
+            <button class="button navbar-item is-danger mx-auto mt-2" @click="logout">
+              Signout
+            </button>
           </div>
         </div>
       </div>
@@ -46,7 +51,7 @@
 <script>
 //TODO: add a watcher that watches changes when user login changes
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { computed, ref, watch } from 'vue'
 import { supabase } from '../supabase.js'
 export default {

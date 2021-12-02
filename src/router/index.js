@@ -4,6 +4,7 @@ import store from '../state'
 import AddNewTickets from '../views/AddNewTickets.vue'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Profile from '../views/Profile.vue'
 import SignUp from '../views/SignUp.vue'
 import PublicFaq from '../views/PublicFaq.vue'
 import TicketsDetail from '../views/TicketsDetail.vue'
@@ -34,6 +35,12 @@ const routes = [
     name: 'PublicFaq',
     component: PublicFaq,
     meta: { requiresAuth: false },
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+    meta: { requiresAuth: true },
   },
   {
     path: '/tickets',

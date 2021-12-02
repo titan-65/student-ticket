@@ -1,36 +1,39 @@
 <script>
-
-import AppLayout from './layout/AppLayout.vue';
-import { useStore } from 'vuex';
-import { computed } from 'vue'
-
-import {supabase } from './supabase'
+import AppLayout from './layout/AppLayout.vue'
+import { useStore } from 'vuex'
+import { computed, watchEffect, watch, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { supabase } from './supabase'
 
 export default {
   components: {
-    AppLayout
+    AppLayout,
   },
   setup() {
+    const route = useRoute()
     const store = useStore()
-    store.dispatch('fetchUser')
     const tickets = computed(() => store.state.tickets)
-
     const user = computed(() => {
       return store.getters.user
-    }
-      )
+    })
+
+    watch([route, user], () => {
+      store.dispatch('fetchUser')
+    })
+
     return {
       tickets,
-	  user
+      user,
+      route,
     }
-  }
+  },
 }
 </script>
 
 <template>
-	<AppLayout>
-		<router-view/>
-	</AppLayout>
+  <AppLayout>
+    <router-view />
+  </AppLayout>
 </template>
 
 <style>
@@ -40,8 +43,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #6d6d6d;
-
-
 }
-
 </style>

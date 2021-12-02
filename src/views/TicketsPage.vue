@@ -40,13 +40,12 @@
 
 <script>
 //TODO: install date parser or use javascript data
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import getTickets from '../composables/getTickets'
 
 // import Tickets from '../components/Tickets.vue'
 export default {
-
   setup() {
     const route = useRoute()
     const { loading, fetchTickets } = getTickets()
@@ -54,6 +53,10 @@ export default {
     onMounted(() => {
       fetchTickets()
     })
+
+    // watchEffect(() => {
+    //
+    // })
     return {
       loading,
       route,
