@@ -9,7 +9,7 @@
           <router-link
             class="button"
             :to="{ name: 'Tickets' }"
-            v-if="route.name !== 'Tickets'"
+            v-if="route.path !== '/tickets'"
             >Tickets</router-link
           >
         </div>
@@ -40,7 +40,7 @@
 
 <script>
 //TODO: install date parser or use javascript data
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import getTickets from '../composables/getTickets'
 
@@ -48,9 +48,14 @@ import getTickets from '../composables/getTickets'
 export default {
   setup() {
     const route = useRoute()
+    console.log(route)
     const { loading, fetchTickets } = getTickets()
 
     onMounted(() => {
+      fetchTickets()
+    })
+
+    watch(route, () => {
       fetchTickets()
     })
     return {
