@@ -10,7 +10,8 @@
   </div>
 </template>
 <script>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import getTickets from '../composables/getTickets'
 
 export default {
@@ -18,9 +19,13 @@ export default {
   //   tickets: Array,
   // },
   setup() {
+    const route = useRoute()
     const { loading, tickets, fetchTickets } = getTickets()
 
     onMounted(() => {
+      fetchTickets()
+    })
+    watch(route, () => {
       fetchTickets()
     })
     return {
