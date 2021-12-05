@@ -5,8 +5,4 @@ import store from './state'
 import router from './router/index.js'
 import 'bulma/css/bulma.css'
 
-createApp(App)
-    .use(router)
-    .use(store)
-    .component('Loading', Loading)
-    .mount('#app')
+createApp(App).use(router).use(store).component('Loading', Loading).mount('#app')

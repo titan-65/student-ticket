@@ -18,6 +18,7 @@ export default {
   //   tickets: Array,
   // },
   setup() {
+    const route = useRoute()
     const { loading, tickets, fetchTickets } = getTickets()
 
     onMounted(() => {

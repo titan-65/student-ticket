@@ -3,6 +3,16 @@ import AppLayout from './layout/AppLayout.vue'
 import { useStore } from 'vuex'
 import { computed, watchEffect, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+//TODO: Add fetchTicket action to this.state.tickets
+//FIXME: infinite loop for navigation guard
+//TODO: Add profile for user information.
+//TODO: Add more dynamic questions in FAQ.
+//FIXME: Student Page (only goes to home route).
+
+// import AppLayout from './layout/AppLayout.vue'
+// import { useStore } from 'vuex'
+// import { computed } from 'vue'
+
 import { supabase } from './supabase'
 
 export default {
